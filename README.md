@@ -1,0 +1,1 @@
+Pour information, le [repository de l'année passée](https://github.com/hepl-dw/wordpress-intro-2016-2017) pourrait servir comme exemple complémentaire.
