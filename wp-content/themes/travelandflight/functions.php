@@ -27,6 +27,28 @@ function taf_get_menu($location) {
 
 
 /**
+ * Custom thumbnail sizes
+ */
+
+function taf_register_image_sizes() {
+    add_image_size('taf-thumbnail', 480, 220, true);
+    add_image_size('taf-big', 1024, 520, true);
+}
+add_action('after_setup_theme', 'taf_register_image_sizes');
+
+function taf_get_post_thumbnail_src($postId, $size = 'taf-thumbnail') {
+    if(!($thumb = get_post_thumbnail_id($postId))) return false;
+    $img = wp_get_attachment_image_src($thumb, $size);
+    if(is_array($img)) return $img[0];
+}
+
+function taf_get_acf_img_src($field, $size = 'taf-thumbnail') {
+    if(!($acf = get_field($field))) return;
+    if(isset($acf['sizes'][$size])) return $acf['sizes'][$size];
+    return $acf['url'];
+}
+
+/**
  * Custom post_type declarations
  */
 
